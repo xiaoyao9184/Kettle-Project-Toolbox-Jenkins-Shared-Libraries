@@ -127,8 +127,7 @@ pipeline {
                     if (!params.ProjectName) {
                         echo "No 'ProjectName' param!"
                         currentBuild.result = 'UNSTABLE'
-                    }
-                    if (!archive) {
+                    } else if (!archive) {
                         echo "No archive info!"
                         currentBuild.result = 'FAILURE'
                     }
