@@ -191,7 +191,7 @@ pipeline {
                     def jenkinsPathExists = deploy.check_file_exists("${info.projectPath}/jenkins")
                     if (jenkinsPathExists) {
                         flow."addJenkinsJob" = true
-                        println 'Patch needs to be applied!'
+                        println 'JenkinsJob needs to be added!'
                     }
                 }
             }
