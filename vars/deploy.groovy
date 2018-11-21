@@ -40,3 +40,9 @@ def get_path_list_file_info(path) {
         }
     return fileList
 }
+
+//rename file
+def rename_file(oldPath,newPath) {
+    def file = new File(oldPath)
+    file.renameTo(newPath)
+}

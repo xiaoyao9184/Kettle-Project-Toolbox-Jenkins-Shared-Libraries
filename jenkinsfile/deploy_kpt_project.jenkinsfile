@@ -222,11 +222,18 @@ pipeline {
             }
             steps {
                 echo 'Active project profile...'
-                fileOperations([
-                    fileRenameOperation(
-                        filePath: "${info.projectPath}/.profile/.profile",
-                        targetLocation: "${info.projectPath}/.profile/${params.DeployProfile}.profile")
-                ])
+                library 'KPT_Shared_Libraries@master'
+                script {
+                    deploy.rename_file(
+                        "${info.projectPath}/.profile/.profile",
+                        "${info.projectPath}/.profile/${params.DeployProfile}.profile")
+                }
+                // cant rename anything
+                // fileOperations([
+                //     fileRenameOperation(
+                //         filePath: "${info.projectPath}/.profile/.profile",
+                //         targetLocation: "${info.projectPath}/.profile/${params.DeployProfile}.profile")
+                // ])
             }
         }     
         stage('Add Jenkins scheduling job') {
