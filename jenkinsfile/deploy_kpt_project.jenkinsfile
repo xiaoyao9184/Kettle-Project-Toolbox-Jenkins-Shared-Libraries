@@ -252,6 +252,7 @@ pipeline {
                         additionalParameters: [
                             ProjectPath: "${info.projectPath}"
                         ],
+                        lookupStrategy: 'SEED_JOB',
                         sandbox: false
                     )
                 }
