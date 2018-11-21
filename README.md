@@ -44,7 +44,7 @@ Setting table for example:
 
 ## Config the jenkins job
 
-Create Jenkins job use workflow(pipeline) called **KPT_SL_Deploy**,
+Create Jenkins job use workflow(pipeline) called **KPT_SL_Deploy_Update**,
 use `Pipeline script from SCM` with this repository url,
 set `Script Path` to `jenkinsfile/deploy_kpt_project.jenkinsfile`.
 
@@ -57,19 +57,20 @@ and KPT will not get subsequent updates.
 
 *The default defined in the `jenkinsfile/deploy_kpt_project.jenkinsfile` pipeline script*
 
+*The* ***KPT_SL_Deploy_Update*** *job CANT share with multiple projects, sub jobs created by job-Dsl will be deleted due to missing references*
 
 ## Deploy in automatic
 
 KPT deploy archive is zip file, so deploy script get archive through the file system.
 
-Create Jenkins job for monitor new archive change in archive path on file system,
-then trigger the **KPT_SL_Deploy** job.
+Create Jenkins job for monitor new archive change in archive path on file system called **KPT_SL_Deploy_Trigger** ,
+then trigger the **KPT_SL_Deploy_Update** job.
 
 > You can use [Syncthing](https://syncthing.net/) for remote archive synchronization,
 
 > use [FSTrigger plugin](https://wiki.jenkins.io/display/JENKINS/FSTrigger+Plugin) for monitor **Archive Path**,
  
-> and use [Parameterized Trigger plugin](https://wiki.jenkins.io/display/JENKINS/Parameterized+Trigger+Plugin) for trigger the **KPT_SL_Deploy** job.
+> and use [Parameterized Trigger plugin](https://wiki.jenkins.io/display/JENKINS/Parameterized+Trigger+Plugin) for trigger the **KPT_SL_Deploy_Update** job.
 
 
 *The* ***Archive Path*** *format is the `{ArchivePath}/{ProjectName}/{ArchiveFile}`,* ***Archive File*** *defined by KPT*
